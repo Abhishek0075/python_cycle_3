@@ -87,23 +87,6 @@ class Vehicles(vehicleAttributes):
   def createFile(self):
     pickle.dump(self.__listOfVehicles,open("pklvehi.pkl","wb"))
   
-  def createpdf(self):
-
-    filePath = input("Enter the file name : ")
-    self.loadFile(filePath)
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial",size = 10)
-    pdf.cell(200,10,ln = 2,align = "C",txt = "No. \tEngNo. \tModel \tType \tMileage \tVendor \tRegNo.\tOwner \n")
-    
-    for entries in self.__listOfVehicles:
-        add_text = " "
-        for data in entries:
-            add_text+=str(data)
-            add_text+="\t"
-        pdf.cell(200,10,ln = 2,align = "C",txt = add_text)
-    pdf.output('Report.pdf')
-
   def filterAttributes(self):
     print("Choose the attribute which you want to filter\n1.Owner Name")
     print("2.Vendor\n3.Model Name\n4.Type\n5.Mileage")
@@ -146,7 +129,7 @@ def main():
   mainLoopOption=1
   while mainLoopOption==1:
     print("1.Add Entries\n2.Modify Attributes\n3.Delete Attributes\n4.Display Entries")
-    print("5.Sort According to Mileage\n6.Filter Attributes\n7.Create Pickle File\n8. Create PDF Report\n9. Exit")
+    print("5.Sort According to Mileage\n6.Filter Attributes\n7.Create Pickle File\n8. Exit")
     choice = int(input())
     if choice==1:
       vehicleObject.addEntries()
@@ -163,10 +146,7 @@ def main():
     elif choice==7:
       vehicleObject.createFile()
     elif choice==8:
-      vehicleObject.createpdf()  
-    elif choice==9:
       break
-  mainLoopOption = int(input("\n1.Continue\n2.Exit"))
 
 if __name__=="__main__":
   main()
